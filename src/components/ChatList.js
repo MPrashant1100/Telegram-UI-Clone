@@ -1,10 +1,10 @@
-// src/components/ChatList.js
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
 const ChatList = () => {
   const [chats, setChats] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchChats = async () => {
@@ -17,6 +17,7 @@ const ChatList = () => {
         } else {
           console.error('Invalid response structure:', response.data);
         }
+        setLoading(false);
       } catch (error) {
         console.error('Error fetching chats:', error);
       }
@@ -24,6 +25,10 @@ const ChatList = () => {
 
     fetchChats();
   }, []);
+
+  if (loading) {
+    return <div>Loading messages...</div>;
+  }
 
   return (
     <div className="w-full md:w-1/3 border-r border-gray-300">

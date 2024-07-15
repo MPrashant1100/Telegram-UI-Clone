@@ -1,10 +1,9 @@
-// src/components/ChatView.js
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 
 const ChatView = () => {
-  const { id: chatId } = useParams(); // Extract chatId from URL parameter
+  const { id: chatId } = useParams(); 
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -32,11 +31,10 @@ const ChatView = () => {
     };
 
     fetchMessages();
-  }, [chatId]); // Depend on chatId to trigger useEffect when it changes
+  }, [chatId]); 
 
   useEffect(() => {
-    console.log('Current chatId:', chatId);
-  }, [chatId]); // Log chatId whenever it changes
+  }, [chatId]);
 
   if (loading) {
     return <div>Loading messages...</div>;
